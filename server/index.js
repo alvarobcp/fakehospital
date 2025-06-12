@@ -1,22 +1,25 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
+import dotenv from 'dotenv';
+import express from 'express';
+import cors from 'cors';
 import pool from './db.js';
-const app = express();
 
+dotenv.config();
+
+const app = express();
 app.use(cors());
 app.use(express.json());
-
-
 
 app.get('/api/pokemon', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM pokemon');
     res.json(result.rows);
   } catch (err) {
+    console.error('Error al consultar la base de datos:', err);
     res.status(500).json({ error: err.message });
   }
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Backend escuchando en http://localhost:${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Backend escuchando en http://localhost:${PORT}`);
+});
