@@ -4,6 +4,7 @@ import cors from 'cors';
 import pool from './db.js';
 
 dotenv.config();
+console.log('Conectando a:', process.env.DATABASE_URL);
 
 const app = express();
 app.use(cors());
