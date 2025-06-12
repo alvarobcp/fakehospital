@@ -9,9 +9,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/api/pokemon', async (req, res) => {
+app.get('/api/hospital', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM pokemon');
+    const result = await pool.query('SELECT * FROM doctor');
     res.json(result.rows);
   } catch (err) {
     console.error('Error al consultar la base de datos:', err);

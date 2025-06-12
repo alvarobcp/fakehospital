@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react';
 
 function App() {
-  const [pokemon, setPokemon] = useState([]);
+  const [doctor, setDoctor] = useState([]);
 
   useEffect(() => {
-    fetch('/api/pokemon')
+    fetch('https://fakehospital.onrender.com/api/hospital')
       .then(res => res.json())
-      .then(data => setPokemon(data));
+      .then(data => setDoctor(data));
   }, []);
 
   return (
     <div>
-      <h1>Pokémon</h1>
+      <h1>Doctors</h1>
       <ul>
-        {pokemon.map(p => (
-          <li key={p.id}>{p.name} - {p.type}</li>
+        {doctor.map(p => (
+          <li key={p.id}>{p.name} - {p.surname}</li>
         ))}
       </ul>
     </div>
