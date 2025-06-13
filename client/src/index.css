@@ -1,0 +1,177 @@
+/* Cleaning */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+  }
+
+  nav{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      height: 10vh;
+      background-color: darkcyan;
+  }
+
+  .nav-container{
+    display: flex;
+    align-items: center;
+    width: 70%;
+  }
+
+  .buttons-nav-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content:end;
+    align-items: center;
+    gap: 1rem;
+
+  }
+
+  h1{
+    color: aliceblue;
+    font-size: 4vh;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+
+  }
+
+  .title{
+    display: flex;
+    align-items: center;
+
+  }
+
+  .nav-user-container{
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    color: aliceblue;
+    font-size: 2.5vh; 
+  }
+
+  .nav-user-container span{
+    font-size: 3.5vh !important;
+  }
+  
+  span{
+    color: aliceblue;
+    font-size: 5vh !important;
+
+  }
+
+  .user-data-container{
+    background-color: #174ea6;
+    height: auto;
+    padding: 5vh 15vh 5vh 15vh;
+    font-family: 'Popins', sans-serif;
+    color:#3c4043;
+    background: url('./assets/background.jpg') no-repeat;
+    background-size: 100%;
+    
+    
+  }
+
+  .user-data-container h2{
+    font-size: 3.5vh;
+    font-weight: 200;
+    padding-bottom: 4vh;
+
+  }
+
+  .user-data-container h3{
+      font-size: 3vh;
+  }
+
+  .user-data-container p{
+    margin-top: 10px;
+  }
+
+  .user-data-container button{
+    margin-top: 30px;
+  }
+
+
+
+/* BUTTONS */
+
+.button-style {
+  align-items: center;
+  appearance: none;
+  background-color: #fff;
+  border-radius: 24px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-sizing: border-box;
+  color: #3c4043;
+  cursor: pointer;
+  display: inline-flex;
+  fill: currentcolor;
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: .25px;
+  line-height: normal;
+  max-width: 100%;
+  overflow: visible;
+  padding: 2px 24px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: auto;
+  will-change: transform,opacity;
+  z-index: 0;
+}
+
+.button-style:hover {
+  background: #F6F9FE;
+  color: #174ea6;
+}
+
+.button-style:active {
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+  outline: none;
+}
+
+.button-style:focus {
+  outline: none;
+  border: 2px solid #4285f4;
+}
+
+.button-style:not(:disabled) {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.button-style:not(:disabled):hover {
+  box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+}
+
+.button-style:not(:disabled):focus {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.button-style:not(:disabled):active {
+  box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+}
+
+.button-style:disabled {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}

@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import Header from './Header';
+import Welcome from './Welcome';
 
 function App() {
   const [doctor, setDoctor] = useState([]);
@@ -10,6 +12,9 @@ function App() {
   }, []);
 
   return (
+    <>
+    <Header></Header>
+    <Welcome></Welcome>
     <div>
       <h1>Doctors</h1>
       <ul>
@@ -18,6 +23,7 @@ function App() {
         ))}
       </ul>
     </div>
+    </>
   );
 }
 
