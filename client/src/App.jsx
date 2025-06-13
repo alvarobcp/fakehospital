@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Header from './Header';
 import Welcome from './Welcome';
+import AppointmentsContainer from './AppointmentsContainer';
 
 function App() {
   const [doctor, setDoctor] = useState([]);
@@ -15,6 +16,8 @@ function App() {
     <>
     <Header></Header>
     <Welcome></Welcome>
+    <AppointmentsContainer></AppointmentsContainer>
+
     <div>
       <h1>Doctors</h1>
       <ul>

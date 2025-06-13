@@ -103,6 +103,49 @@
     margin-top: 30px;
   }
 
+  .appointments-container{
+    background-color: #174ea6;
+    padding: 5vh 15vh 5vh 15vh;
+    height: auto;
+  }
+
+  .appointments-container h3{
+    font-size: 3vh;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    color: aliceblue;
+    margin-left: 5px;
+
+  }
+
+  .appointments-container span{
+    font-size: 3vh !important;
+  }
+
+  .app-container{
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .app-container div{
+    width: 15vh;
+    height: auto;
+    border-radius: 10px;
+    background-color: antiquewhite;
+  }
+
+  .appointment-component{
+    padding: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-size: auto;
+  }
+
+  .appointment-component button{
+    float: right;
+    font-size: 1.5vh;
+  }
 
 
 /* BUTTONS */
