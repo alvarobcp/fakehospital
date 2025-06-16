@@ -7,7 +7,7 @@ function App() {
   const [doctor, setDoctor] = useState([]);
 
   useEffect(() => {
-    fetch('https://fakehospital.onrender.com/api/hospital${3}')
+    fetch(`https://fakehospital.onrender.com/api/hospital/${3}`)
       .then(res => res.json())
       .then(data => setDoctor(data));
   }, []);
