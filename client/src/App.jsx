@@ -4,7 +4,7 @@ import Welcome from './Welcome';
 import AppointmentsContainer from './AppointmentsContainer';
 
 function App() {
-  const [doctor, setDoctor] = useState([]);
+  const [doctor, setDoctor] = useState(null);
 
   useEffect(() => {
     fetch(`https://fakehospital.onrender.com/api/hospital/${3}`)
@@ -20,11 +20,9 @@ function App() {
 
     <div>
       <h1>Doctors</h1>
+       {console.log("DATOS RECIBIDOS: ", doctor)}
       <ul>
-          {console.log("DATOS RECIBIDOS: " + doctor)}
-          {doctor.map(p => (
-          <li key={p.id}>{p.name} - {p.surname}</li>
-        ))}
+         {doctor ? <li>{doctor.name}</li> : <li>Waiting...</li>}  
       </ul>
     </div>
     </>
