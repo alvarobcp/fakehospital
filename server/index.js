@@ -10,10 +10,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/api/hospital', async (req, res) => {
+app.get('/api/hospital:id', async (req, res) => {
+  const {id} = req.params;
   try {
-    const result = await pool.query('SELECT * FROM doctor');
-    res.json(result.rows);
+    const result = await pool.query('SELECT * FROM doctor WHERE id = $1', [id]);
+    res.json(result.rows[0]);
   } catch (err) {
     console.error('Error al consultar la base de datos:', err);
     res.status(500).json({ error: err.message });

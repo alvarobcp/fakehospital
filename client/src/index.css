@@ -130,7 +130,8 @@
   }
 
   .app-container div{
-    width: 15vh;
+    width: auto;
+    min-width: 15vh;
     height: auto;
     border-radius: 10px;
     background-color: antiquewhite;

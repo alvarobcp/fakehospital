@@ -7,7 +7,7 @@ function App() {
   const [doctor, setDoctor] = useState([]);
 
   useEffect(() => {
-    fetch('https://fakehospital.onrender.com/api/hospital')
+    fetch('https://fakehospital.onrender.com/api/hospital${3}')
       .then(res => res.json())
       .then(data => setDoctor(data));
   }, []);
@@ -21,7 +21,8 @@ function App() {
     <div>
       <h1>Doctors</h1>
       <ul>
-        {doctor.map(p => (
+          {console.log("DATOS RECIBIDOS: " + doctor)}
+          {doctor.map(p => (
           <li key={p.id}>{p.name} - {p.surname}</li>
         ))}
       </ul>
