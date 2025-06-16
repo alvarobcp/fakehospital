@@ -6,7 +6,7 @@ function AppointmentsContainer() {
   return (
     
       <div className='appointments-container'>
-        <div className="title"><span class="material-symbols-outlined">emergency</span><h3>My Appointments:</h3></div>
+        <div className="title"><span className="material-symbols-outlined">emergency</span><h3>My Appointments:</h3></div>
         <div className='app-container'>
            <Appointment></Appointment>
            <Appointment></Appointment>

@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 
 
-function Welcome() {
+function Welcome({name, surname, phone, mail}) {
 
   return (
     <div className='container user-data-container'>
         <div>
-            <h2>Welcome back Álvaro</h2>
+            <h2>Welcome back {name}</h2>
             <h3>Your current data:</h3>
-            <p>Álvaro Delgado Ramos</p>
-            <p>658487001</p>
-            <p>alvaro@gmail.com</p>
+            <p>{name} {surname}</p>
+            <p>{phone}</p>
+            <p>{mail}</p>
             <button className="button-style user-button" >New appointment</button>
         </div>
     </div>
