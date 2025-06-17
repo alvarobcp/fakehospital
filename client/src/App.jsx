@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Header from './Header';
 import Welcome from './Welcome';
 import AppointmentsContainer from './AppointmentsContainer';
+import NewAppointment from './NewAppointment';
 
 function App() {
   const [doctor, setDoctor] = useState(null);
@@ -9,31 +10,24 @@ function App() {
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
-    fetch(`https://fakehospital.onrender.com/api/hospital/${3}`)
+    fetch(`https://fakehospital.onrender.com/api/hospital/${1}`)
       .then(res => res.json())
       .then(data => setPatient(data));
   }, []);
 
 
   useEffect(() => {
-    fetch(`https://fakehospital.onrender.com/api/hospital/appointments/${3}`)
+    fetch(`https://fakehospital.onrender.com/api/hospital/appointments/${1}`)
       .then(res => res.json())
       .then(data => setAppointments(data));
   }, [patient]);
 
   return (
     <>
-    <Header></Header>
-    <Welcome name={patient.name} surname={patient.surname} phone={patient.phone} mail={patient.mail}></Welcome>
-    <AppointmentsContainer></AppointmentsContainer>
-
-    <div>
-      <h1>Doctors</h1>
-       {console.log("DATOS RECIBIDOS: ", doctor)}
-      <ul>
-         {doctor ? <li>{doctor.name}</li> : <li>Waiting...</li>}  
-      </ul>
-    </div>
+    {patient ? <Header name={patient.name} surname={patient.surname}></Header> : <div></div>}
+    {patient ? <Welcome name={patient.name} surname={patient.surname} phone={patient.phone} mail={patient.mail}></Welcome> : <div>Waiting...</div>}
+    {appointments ? <AppointmentsContainer appointments={appointments}></AppointmentsContainer> : <div></div>}
+    {patient ? <NewAppointment></NewAppointment> : <div></div>}
     </>
   );
 }

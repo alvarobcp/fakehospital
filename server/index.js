@@ -22,6 +22,19 @@ app.get('/api/hospital/:id', async (req, res) => {
   }
 });
 
+
+app.get('/api/hospital/appointment', async (req, res) => {
+  const speciality = req.query.speciality;
+  try {
+    const result = await pool.query('SELECT doctor_name, doctor_surname, date, time, doctor_credential, speciality, patient_id FROM appointment JOIN doctor ON appointment.doctor_id = doctor.id WHERE speciality = $1 AND patient_id IS NULL', [speciality]);
+    res.json(result.rows);
+    console.log(result.rows);
+  } catch (err) {
+    console.error('Error al consultar la base de datos:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.get('/api/hospital/appointments/:id', async (req, res) => {
   const {id} = req.params;
   try {
@@ -38,3 +51,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Backend escuchando en http://localhost:${PORT}`);
 });
+
+
+//https://fakehospital.onrender.com/api/hospital/appointment?speciality=${speciality}
