@@ -41,8 +41,8 @@ function NewAppointment() {
         </div>
         <div className='app-container'>
               {appointments.length > 0 ? 
-              appointments.map((appn, index) => (<Appointment key={index} id={appn.id} doctor_name={appn.doctor_name} doctor_surname={appn.doctor_surname} speciality={appn.speciality} date={appn.date} time ={appn.time} 
-              button={<button onClick={()=> addAppointment(appn.id)}>Accept</button>}></Appointment>)) : <p>No appointments</p>}
+              appointments.map((appn, index) => (<Appointment key={index} id={appn.appointment_id} doctor_name={appn.doctor_name} doctor_surname={appn.doctor_surname} speciality={appn.speciality} date={appn.date} time ={appn.time} 
+              button={<button onClick={()=> addAppointment(appn.appointment_id)}>Accept</button>}></Appointment>)) : <p>No appointments</p>}
         </div>
       </div>
 
