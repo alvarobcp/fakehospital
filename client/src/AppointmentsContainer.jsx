@@ -4,7 +4,7 @@ import Appointment from './Appointment';
 function AppointmentsContainer({appointments, setAppointments}) {
 
   const removeAppointment = async (id) => {
-      console.log("Added appointment with id: " + id)
+      console.log("Deleted appointment with id: " + id)
       try{
             const res = await fetch(`https://fakehospital.onrender.com/api/hospital/removeappointment/${id}`, {
                 method: 'POST',
@@ -18,8 +18,6 @@ function AppointmentsContainer({appointments, setAppointments}) {
 
             if (res.ok) {
                 console.log('Done!');
-                await getAppointments(speciality);
-
                 const resPatient = await fetch(`https://fakehospital.onrender.com/api/hospital/appointments/${1}`);
                 const dataPatient = await resPatient.json();
                 setAppointments(dataPatient);
@@ -28,8 +26,8 @@ function AppointmentsContainer({appointments, setAppointments}) {
             } else {
                 console.log(`Error: ${result.error}`);
             }
-            } catch (err) {
-            console.log('Error');
+          } catch (err) {
+            console.log('Error' + err);
             }
   }
 
