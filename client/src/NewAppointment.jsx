@@ -32,8 +32,8 @@ function NewAppointment() {
            <button onClick={() => getAppointments('Pediatrician')}>Pediatrician</button>  
         </div>
         <div className='app-container'>
-              {appointments ? 
-              appointments.map((appn, index) => (<Appointment key={index} doctor_name={appn.doctor_name} doctor_surname={appn.doctor_surname} speciality={appn.speciality} date={appn.date} time ={appn.time} button={<button>Accept</button>}></Appointment>)) : <div></div>}
+              {appointments.length > 0 ? 
+              appointments.map((appn, index) => (<Appointment key={index} doctor_name={appn.doctor_name} doctor_surname={appn.doctor_surname} speciality={appn.speciality} date={appn.date} time ={appn.time} button={<button>Accept</button>}></Appointment>)) : <p>No appointments</p>}
         </div>
       </div>
 

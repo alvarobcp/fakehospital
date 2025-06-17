@@ -26,7 +26,7 @@ app.get('/api/hospital/:id', async (req, res) => {
 app.get('/api/hospital/appointment', async (req, res) => {
   const speciality = req.query.speciality;
   try {
-    const result = await pool.query('SELECT doctor_name, doctor_surname, date, time, doctor_credential, speciality, patient_id FROM appointment JOIN doctor ON appointment.doctor_id = doctor.id WHERE speciality = $1 AND patient_id IS NULL', [speciality]);
+    const result = await pool.query('SELECT doctor_name, doctor_surname, date, time, doctor_credential, speciality, patient_id FROM appointment JOIN doctor ON appointment.doctor_id = doctor.id WHERE doctor.speciality = $1 AND patient_id IS NULL', [speciality]);
     res.json(result.rows);
     console.log(result.rows);
   } catch (err) {
