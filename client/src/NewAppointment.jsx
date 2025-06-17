@@ -8,6 +8,25 @@ function NewAppointment() {
 
      const addAppointment = async (id) => {
       console.log("Added appointment with id: " + id)
+      try{
+            const res = await fetch(`https://fakehospital.onrender.com/api/hospital/addappointment/${id}`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json',},
+                body: JSON.stringify({
+                    patient_id: id
+                }),
+            });
+           
+            const result = await res.json();
+
+            if (res.ok) {
+                setMensaje('Done!');
+            } else {
+                setMensaje(`Error: ${result.error}`);
+            }
+            } catch (err) {
+            setMensaje('Error');
+            }
   }
 
   const deleteAppointment = async (id) => {
