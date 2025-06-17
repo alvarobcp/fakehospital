@@ -26,8 +26,8 @@ function App() {
     <>
     {patient ? <Header name={patient.name} surname={patient.surname}></Header> : <div></div>}
     {patient ? <Welcome name={patient.name} surname={patient.surname} phone={patient.phone} mail={patient.mail}></Welcome> : <div>Waiting...</div>}
-    {appointments ? <AppointmentsContainer appointments={appointments}></AppointmentsContainer> : <div></div>}
-    {patient ? <NewAppointment></NewAppointment> : <div></div>}
+    {appointments ? <AppointmentsContainer appointments={appointments} setAppointments={setAppointments} patient_id={1}></AppointmentsContainer> : <div></div>}
+    {patient ? <NewAppointment setAppointments={setAppointments} patient_id={1}></NewAppointment> : <div></div>}
     </>
   );
 }

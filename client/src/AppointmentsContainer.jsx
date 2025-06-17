@@ -1,7 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import Appointment from './Appointment';
 
-function AppointmentsContainer({appointments}) {
+function AppointmentsContainer({appointments, setAppointments}) {
+
+  const removeAppointment = async (id) => {
+      console.log("Added appointment with id: " + id)
+      try{
+            const res = await fetch(`https://fakehospital.onrender.com/api/hospital/removeappointment/${id}`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json',},
+                body: JSON.stringify({
+                    appointment_id: id  //REV
+                }),
+            });
+           
+            const result = await res.json();
+
+            if (res.ok) {
+                console.log('Done!');
+                await getAppointments(speciality);
+
+                const resPatient = await fetch(`https://fakehospital.onrender.com/api/hospital/appointments/${1}`);
+                const dataPatient = await resPatient.json();
+                setAppointments(dataPatient);
+
+
+            } else {
+                console.log(`Error: ${result.error}`);
+            }
+            } catch (err) {
+            console.log('Error');
+            }
+  }
 
   return (
     
@@ -12,7 +42,8 @@ function AppointmentsContainer({appointments}) {
            {appointments.map((appn, index) => (
             <Appointment key={index} doctor_name={appn.doctor_name}
             doctor_surname={appn.doctor_surname} speciality={appn.speciality} date={appn.date}
-            time ={appn.time} button={<button>Cancel</button>}></Appointment>
+            time ={appn.time} 
+            button={<button onClick={()=> removeAppointment(appn.appointment_id)}>Cancel</button>}></Appointment>
            ))}
            
         </div>

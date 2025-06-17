@@ -66,6 +66,24 @@ app.post('/api/hospital/addappointment/:id', async (req, res) => {
 
 });
 
+
+app.post('/api/hospital/removeappointment/:id', async (req, res) => {
+
+  const appointment_id = req.params.id;
+
+  try {
+    const result = await pool.query(
+      'UPDATE appointment SET patient_id = NULL WHERE id = $1 RETURNING *',
+      [appointment_id]
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error diving the appointment' });
+  }
+
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Backend escuchando en http://localhost:${PORT}`);
