@@ -6,6 +6,14 @@ function NewAppointment() {
 
     const [appointments, SetAppointments] = useState([]);
 
+     const addAppointment = async (id) => {
+      console.log("Added appointment with id: " + id)
+  }
+
+  const deleteAppointment = async (id) => {
+      console.log("Deleted appointment with id: " + id)
+  }
+
     const getAppointments = async (speciality) => {
         try{
             const res = await fetch(`https://fakehospital.onrender.com/api/hospital/appointment?speciality=${speciality}`);
@@ -33,7 +41,8 @@ function NewAppointment() {
         </div>
         <div className='app-container'>
               {appointments.length > 0 ? 
-              appointments.map((appn, index) => (<Appointment key={index} doctor_name={appn.doctor_name} doctor_surname={appn.doctor_surname} speciality={appn.speciality} date={appn.date} time ={appn.time} button={<button>Accept</button>}></Appointment>)) : <p>No appointments</p>}
+              appointments.map((appn, index) => (<Appointment key={index} id={appn.id} doctor_name={appn.doctor_name} doctor_surname={appn.doctor_surname} speciality={appn.speciality} date={appn.date} time ={appn.time} 
+              button={<button onClick={()=> addAppointment(appn.id)}>Accept</button>}></Appointment>)) : <p>No appointments</p>}
         </div>
       </div>
 

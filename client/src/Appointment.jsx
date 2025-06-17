@@ -1,6 +1,8 @@
 import React from 'react';
 
-function Appointment({key, doctor_name, doctor_surname, speciality, date, time, button}) {
+function Appointment({key, id, doctor_name, doctor_surname, speciality, date, time, button}) {
+
+ 
 
   const formatDate = (date) => {
   const formated_date = new Date(date);
