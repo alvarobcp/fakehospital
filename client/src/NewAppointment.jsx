@@ -27,9 +27,9 @@ function NewAppointment() {
       <div className='appointments-container'>
         <div className="title"><span class="material-symbols-outlined">emergency</span><h3>New appointment:</h3></div>
         <div className='app-container'>
-           <button onClick={() => getAppointments('Cardiologist')}>Cardiologist</button>
-           <button onClick={() => getAppointments('Neurologist')}>Neurologist</button>
-           <button onClick={() => getAppointments('Pediatrician')}>Pediatrician</button>  
+           <button onClick={() => getAppointments("Cardiologist")}>Cardiologist</button>
+           <button onClick={() => getAppointments("Neurologist")}>Neurologist</button>
+           <button onClick={() => getAppointments("Pediatrician")}>Pediatrician</button>  
         </div>
         <div className='app-container'>
               {appointments.length > 0 ? 
