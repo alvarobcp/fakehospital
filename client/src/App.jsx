@@ -5,6 +5,7 @@ import AppointmentsContainer from './AppointmentsContainer';
 import NewAppointment from './NewAppointment';
 import DoctorAppnContainer from './DoctorAppnContainer';
 import FreeDoctorAppnContainer from './FreeDoctorAppnContainer';
+import AddAppointment from './AddAppointment';
 
 function App() {
 
@@ -43,7 +44,7 @@ function App() {
         {user ? <Header name={user.doctor_name} surname={user.doctor_surname}></Header> : <div></div>}
         {appointments ? <DoctorAppnContainer appointments={appointments} setAppointments={setAppointments} patient_id={1}></DoctorAppnContainer> : <div>Waiting data</div>}
         {appointments ? <FreeDoctorAppnContainer appointments={freeAppointments} setAppointments={setAppointments} patient_id={1}></FreeDoctorAppnContainer> : <div>Waiting data</div>}
-
+        {appointments ? <AddAppointment setAppointments={setAppointments}></AddAppointment> : <div>Waiting data</div>}
     </>
 
      ) : (

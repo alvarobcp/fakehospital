@@ -138,6 +138,23 @@ app.post('/api/doctor/removeappointment/:id', async (req, res) => { //remove app
 
 });
 
+app.post('/api/doctor/newappointment', async (req, res) => { //NEW APPOINTMENT
+
+  const {doctor_id, date, time} = req.body;
+
+  try {
+    const result = await pool.query(
+      'INSERT INTO appointment (date, time, doctor_id) VALUES($1, $2, $3)',
+      [date, time, doctor_id]
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error diving the appointment' });
+  }
+
+});
+
 
 app.delete('/api/doctor/deleteappointment/:id', async (req, res) => { //DELETE a free appointment
 
