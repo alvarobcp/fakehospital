@@ -72,6 +72,18 @@ app.get('/api/doctor/appointments/:id', async (req, res) => { //get array appoin
   }
 });
 
+app.get('/api/doctor/freeappointments/:id', async (req, res) => { //get FREE array appointments by doctor id
+  const {id} = req.params;
+  try {
+    const result = await pool.query('SELECT appointment.id AS appointment_id, date, time FROM appointment WHERE doctor_id = $1 AND patient_id IS NULL ORDER BY date', [id]);
+    res.json(result.rows);
+    console.log(result.rows);
+  } catch (err) {
+    console.error('Error al consultar la base de datos:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.post('/api/hospital/addappointment/:id', async (req, res) => {
 
   const appointment_id = req.params.id;

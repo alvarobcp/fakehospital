@@ -4,6 +4,7 @@ import Welcome from './Welcome';
 import AppointmentsContainer from './AppointmentsContainer';
 import NewAppointment from './NewAppointment';
 import DoctorAppnContainer from './DoctorAppnContainer';
+import FreeDoctorAppnContainer from './FreeDoctorAppnContainer';
 
 function App() {
 
@@ -11,6 +12,8 @@ function App() {
   const [role, SetRole] = useState('doctor'); //must change after login as the id
   const [user, setUser] = useState(null);
   const [appointments, setAppointments] = useState([]);
+
+  const [freeAppointments, setFreeAppointments] = useState([]);
   
 
   useEffect(() => {
@@ -26,6 +29,12 @@ function App() {
       .then(data => setAppointments(data));
   }, [user]);
 
+  useEffect(() => {
+    fetch(`https://fakehospital.onrender.com/api/doctor/freeappointments/${3}`)
+      .then(res => res.json())
+      .then(data => setFreeAppointments(data));
+  }, [appointments]);
+
   return (
     <>
     {role === 'doctor' ? (
@@ -33,7 +42,8 @@ function App() {
     <>
         {user ? <Header name={user.doctor_name} surname={user.doctor_surname}></Header> : <div></div>}
         {appointments ? <DoctorAppnContainer appointments={appointments} setAppointments={setAppointments} patient_id={1}></DoctorAppnContainer> : <div>Waiting data</div>}
-        
+        {appointments ? <FreeDoctorAppnContainer appointments={freeAppointments} setAppointments={setAppointments} patient_id={1}></FreeDoctorAppnContainer> : <div>Waiting data</div>}
+
     </>
 
      ) : (
