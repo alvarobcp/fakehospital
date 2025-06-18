@@ -8,7 +8,7 @@ function FreeDoctorAppnContainer({appointments, setAppointments}) {
       console.log("Deleted appointment with id: " + id)
       try{
             const res = await fetch(`https://fakehospital.onrender.com/api/doctor/deleteappointment/${id}`, {
-                method: 'POST',
+                method: 'DELETE', //must be delete??
                 headers: {'Content-Type': 'application/json',},
                 body: JSON.stringify({
                     appointment_id: id  //REV

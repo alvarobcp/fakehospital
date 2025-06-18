@@ -139,7 +139,7 @@ app.post('/api/doctor/removeappointment/:id', async (req, res) => { //remove app
 });
 
 
-app.post('/api/doctor/deleteappointment/:id', async (req, res) => { //DELETE a free appointment
+app.delete('/api/doctor/deleteappointment/:id', async (req, res) => { //DELETE a free appointment
 
   const appointment_id = req.params.id;
 
