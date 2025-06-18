@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import Appointment from './Appointment';
+import FreeAppointment from './FreeAppointment';
 import DoctorAppointment from './DoctorAppointment';
 
 function FreeDoctorAppnContainer({appointments, setAppointments}) {
 
-  const removeAppointment = async (id) => {
+  const removeFreeAppointment = async (id) => {
       console.log("Deleted appointment with id: " + id)
       try{
-            const res = await fetch(`https://fakehospital.onrender.com/api/doctor/removeappointment/${id}`, {
+            const res = await fetch(`https://fakehospital.onrender.com/api/doctor/deleteappointment/${id}`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json',},
                 body: JSON.stringify({
@@ -39,10 +39,9 @@ function FreeDoctorAppnContainer({appointments, setAppointments}) {
         <div className='app-container'>
           
            {appointments.map((appn, index) => (
-            <DoctorAppointment key={index} name={appn.name}
-            surname={appn.surname} date={appn.date}
+            <FreeAppointment key={index}  date={appn.date}
             time ={appn.time} 
-            button={<button onClick={()=> removeAppointment(appn.appointment_id)}>Cancel</button>}></DoctorAppointment>
+            button={<button onClick={()=> removeFreeAppointment(appn.appointment_id)}>Delete</button>}></FreeAppointment>
            ))}
            
         </div>

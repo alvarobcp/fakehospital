@@ -138,6 +138,24 @@ app.post('/api/doctor/removeappointment/:id', async (req, res) => { //remove app
 
 });
 
+
+app.post('/api/doctor/deleteappointment/:id', async (req, res) => { //DELETE a free appointment
+
+  const appointment_id = req.params.id;
+
+  try {
+    const result = await pool.query(
+      'DELETE FROM appointment WHERE id = $1',
+      [appointment_id]
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error diving the appointment' });
+  }
+
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Backend escuchando en http://localhost:${PORT}`);
