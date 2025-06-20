@@ -40,7 +40,7 @@ function AddAppointment({appointments, setAppointments}) {
    const submitAppointment = (e) => {
     e.preventDefault();
     if (!date || !time) {
-      alert("Por favor, completa ambos campos.");
+      alert("Please, some data is missing");
       return;
     }
 
@@ -80,6 +80,7 @@ function AddAppointment({appointments, setAppointments}) {
                     <input
                     type="time"
                     value={time}
+                    step="3600"
                     onChange={(e) => setTime(e.target.value)}
                     />
                 </label>

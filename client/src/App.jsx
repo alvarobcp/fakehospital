@@ -10,7 +10,8 @@ import AddAppointment from './AddAppointment';
 function App() {
 
   const globalVAriable = 'hospital'; //hospital for user
-  const [role, SetRole] = useState('doctor'); //must change after login as the id
+  const [role, SetRole] = useState('hospital'); //must change after login as the id
+  const [id, SetId] = useState(1);
   const [user, setUser] = useState(null);
   const [appointments, setAppointments] = useState([]);
 
@@ -18,20 +19,21 @@ function App() {
   
 
   useEffect(() => {
-    fetch(`https://fakehospital.onrender.com/api/doctor/${3}`)
+
+    fetch(`https://fakehospital.onrender.com/api/${role}/${id}`)
       .then(res => res.json())
       .then(data => setUser(data));
   }, []);
 
 
   useEffect(() => {
-    fetch(`https://fakehospital.onrender.com/api/doctor/appointments/${3}`)
+    fetch(`https://fakehospital.onrender.com/api/${role}/appointments/${id}`)
       .then(res => res.json())
       .then(data => setAppointments(data));
   }, [user]);
 
   useEffect(() => {
-    fetch(`https://fakehospital.onrender.com/api/doctor/freeappointments/${3}`)
+    fetch(`https://fakehospital.onrender.com/api/${role}/freeappointments/${id}`)
       .then(res => res.json())
       .then(data => setFreeAppointments(data));
   }, [appointments]);
@@ -62,3 +64,8 @@ function App() {
 }
 
 export default App;
+
+
+//Cosas que hacer:
+// [] tengo va cariable patient_id que la paso a los componentes, rev y quitar
+// [] login que me de role e id
