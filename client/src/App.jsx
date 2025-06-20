@@ -6,44 +6,74 @@ import NewAppointment from './NewAppointment';
 import DoctorAppnContainer from './DoctorAppnContainer';
 import FreeDoctorAppnContainer from './FreeDoctorAppnContainer';
 import AddAppointment from './AddAppointment';
+import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
 
-  const globalVAriable = 'hospital'; //hospital for user
-  const [role, SetRole] = useState('hospital'); //must change after login as the id
-  const [id, SetId] = useState(1);
-  const [user, setUser] = useState(null);
+
+  const [role, SetRole] = useState('');
+  const [id, SetId] = useState(null);
+  const [userData, setUserData] = useState(null);
   const [appointments, setAppointments] = useState([]);
 
   const [freeAppointments, setFreeAppointments] = useState([]);
   
+  const { loginWithRedirect, logout, isAuthenticated, user, isLoading } = useAuth0();
+
+  useEffect(() => { //get token with role and id from useAth0
+    if (isAuthenticated && user) {
+      const role = user["https://fakehospital.com/role"];
+      const id = user["https://fakehospital.com/id"];
+
+      SetRole(role);
+      SetId(id);
+      console.log(`Role: ${role} id: ${id}`);
+    }
+  }, [userData, isAuthenticated]);
 
   useEffect(() => {
-
+    if(role && id) {
     fetch(`https://fakehospital.onrender.com/api/${role}/${id}`)
       .then(res => res.json())
-      .then(data => setUser(data));
-  }, []);
+      .then(data => setUserData(data));
+    }
+  }, [role, id]);
 
 
   useEffect(() => {
+    if(role && id && userData){
     fetch(`https://fakehospital.onrender.com/api/${role}/appointments/${id}`)
       .then(res => res.json())
       .then(data => setAppointments(data));
-  }, [user]);
+    }
+  }, [role, id, userData, appointments]);
 
   useEffect(() => {
+    if(role==='doctor' && id && userData){
     fetch(`https://fakehospital.onrender.com/api/${role}/freeappointments/${id}`)
       .then(res => res.json())
       .then(data => setFreeAppointments(data));
-  }, [appointments]);
+    }
+  }, [role, id, userData, appointments]);
+
+
+  if (isLoading) return <div>Cargando...</div>;
+
+  if (!isAuthenticated) {
+    return (
+      <div>
+        <h1>Bienvenido</h1>
+        <button onClick={() => loginWithRedirect()}>Iniciar sesión</button>
+      </div>
+    );
+  }
 
   return (
     <>
     {role === 'doctor' ? (
 
     <>
-        {user ? <Header name={user.doctor_name} surname={user.doctor_surname}></Header> : <div></div>}
+        {userData ? <Header name={userData.doctor_name} surname={userData.doctor_surname} logout={() => logout({ returnTo: window.location.origin })}></Header> : <div></div>}
         {appointments ? <DoctorAppnContainer appointments={appointments} setAppointments={setAppointments} patient_id={1}></DoctorAppnContainer> : <div>Waiting data</div>}
         {appointments ? <FreeDoctorAppnContainer appointments={freeAppointments} setAppointments={setAppointments} patient_id={1}></FreeDoctorAppnContainer> : <div>Waiting data</div>}
         {appointments ? <AddAppointment setAppointments={setAppointments}></AddAppointment> : <div>Waiting data</div>}
@@ -51,14 +81,17 @@ function App() {
 
      ) : (
    <>
-    {user ? <Header name={user.name} surname={user.surname}></Header> : <div></div>}
-    {user ? <Welcome name={user.name} surname={user.surname} phone={user.phone} mail={user.mail}></Welcome> : <div>Waiting...</div>}
+    {userData ? <Header name={userData.name} surname={userData.surname} logout={() => logout({ returnTo: window.location.origin })}></Header> : <div></div>}
+    {userData ? <Welcome name={userData.name} surname={userData.surname} phone={userData.phone} mail={userData.mail}></Welcome> : <div>Waiting...</div>}
     {appointments ? <AppointmentsContainer appointments={appointments} setAppointments={setAppointments} patient_id={1}></AppointmentsContainer> : <div></div>}
-    {user ? <NewAppointment setAppointments={setAppointments} patient_id={1}></NewAppointment> : <div></div>}
+    {userData ? <NewAppointment setAppointments={setAppointments} patient_id={1}></NewAppointment> : <div></div>}
    </>
   
   )}
+
+  <button onClick={() => logout({ returnTo: window.location.origin})}>Iniciar sesión</button>
  </>
+ 
   );
 
 }

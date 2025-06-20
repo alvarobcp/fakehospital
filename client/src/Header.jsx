@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 
-function Header({name, surname}) {
+function Header({name, surname, logout}) {
 
   return (
     <nav>
@@ -9,7 +9,7 @@ function Header({name, surname}) {
         <div className="title"><span className="material-symbols-outlined">emergency</span><h1>WebAppointment</h1></div>
         <div className='buttons-nav-container'>
             <div className="nav-user-container"><span className="material-symbols-outlined">account_circle</span><p>{name} {surname}</p></div>
-            <button className="button-style">Log Out</button>
+            <button className="button-style" onClick={logout}>Log Out</button>
         </div>
       </div>
     </nav>
@@ -17,3 +17,4 @@ function Header({name, surname}) {
 }
 
 export default Header;
+
