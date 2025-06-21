@@ -34,14 +34,14 @@ function AppointmentsContainer({appointments, setAppointments}) {
   return (
     
       <div className='appointments-container'>
-        <div className="title"><span className="material-symbols-outlined">emergency</span><h3>My Appointments:</h3></div>
+        <div className="title app-title"><span class="material-symbols-outlined" style={{ color: '#60afff' }}>calendar_month</span><h3>UPCOMING <b style={{ color: '#60afff' }}>APPOINTMENTS:</b></h3></div>
         <div className='app-container'>
           
            {appointments.map((appn, index) => (
             <Appointment key={index} doctor_name={appn.doctor_name}
             doctor_surname={appn.doctor_surname} speciality={appn.speciality} date={appn.date}
             time ={appn.time} 
-            button={<button onClick={()=> removeAppointment(appn.appointment_id)}>Cancel</button>}></Appointment>
+            button={<button className='button-style' onClick={()=> removeAppointment(appn.appointment_id)}><span class="app-button-icon material-symbols-outlined">close</span>Cancel</button>}></Appointment>
            ))}
            
         </div>

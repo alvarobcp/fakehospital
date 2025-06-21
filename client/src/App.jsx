@@ -74,8 +74,8 @@ function App() {
 
     <>
         {userData ? <Header name={userData.doctor_name} surname={userData.doctor_surname} logout={() => logout({ returnTo: window.location.origin })}></Header> : <div></div>}
-        {appointments ? <DoctorAppnContainer appointments={appointments} setAppointments={setAppointments} patient_id={1}></DoctorAppnContainer> : <div>Waiting data</div>}
-        {appointments ? <FreeDoctorAppnContainer appointments={freeAppointments} setAppointments={setAppointments} patient_id={1}></FreeDoctorAppnContainer> : <div>Waiting data</div>}
+        {appointments ? <DoctorAppnContainer appointments={appointments} setAppointments={setAppointments}></DoctorAppnContainer> : <div>Waiting data</div>}
+        {appointments ? <FreeDoctorAppnContainer appointments={freeAppointments} setAppointments={setAppointments}></FreeDoctorAppnContainer> : <div>Waiting data</div>}
         {appointments ? <AddAppointment setAppointments={setAppointments}></AddAppointment> : <div>Waiting data</div>}
     </>
 
@@ -83,13 +83,14 @@ function App() {
    <>
     {userData ? <Header name={userData.name} surname={userData.surname} logout={() => logout({ returnTo: window.location.origin })}></Header> : <div></div>}
     {userData ? <Welcome name={userData.name} surname={userData.surname} phone={userData.phone} mail={userData.mail}></Welcome> : <div>Waiting...</div>}
-    {appointments ? <AppointmentsContainer appointments={appointments} setAppointments={setAppointments} patient_id={1}></AppointmentsContainer> : <div></div>}
-    {userData ? <NewAppointment setAppointments={setAppointments} patient_id={1}></NewAppointment> : <div></div>}
+    {appointments ? <AppointmentsContainer appointments={appointments} setAppointments={setAppointments}></AppointmentsContainer> : <div></div>}
+    {userData ? <NewAppointment setAppointments={setAppointments}></NewAppointment> : <div></div>}
    </>
   
   )}
-
-  <button onClick={() => logout({ returnTo: window.location.origin})}>Iniciar sesión</button>
+  <div className='container' style={{ textAlign: 'center' }}><p className='welcome-text'>In case you need some help, please contact us at +87 866 973 000 or send an email to info@fakehospital.com — We will contact you as soon as posible.</p></div>
+  <footer className='container' style={{ textAlign: 'center' }}><p className='footer-text'>Developed by Álvaro Delgado to practise React, CSS, Databases and Node.js with Express.</p></footer>
+  <button onClick={() => logout({ returnTo: window.location.origin})}>Cerrar la sesión (dev)</button>
  </>
  
   );
