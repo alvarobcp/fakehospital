@@ -108,8 +108,6 @@ h1 {
   color: rgb(50, 52, 53);
   padding-right: 200px;
   margin-bottom: 30px;
-
-
 }
 
 .appointments-container span {
@@ -128,7 +126,23 @@ h1 {
   min-width: 20vh;
   height: auto;
   border-radius: 10px;
-  border: none;
+  /*border: none;*/
+}
+
+.dr-app-container {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.dr-app-container div {
+  width: auto;
+  min-width: 17vh;
+  height: auto;
+  border-radius: 10px;
+  padding: 20px;
+
 }
 
 .appointment-component {
@@ -156,14 +170,14 @@ h1 {
 }
 
 
-.app-container div {
+/*.app-container div {
   width: auto;
   min-width: 20vh;
   height: auto;
   border-radius: 10px;
 
 
-}
+}*/
 
 .appointments-container {
   margin: 0vh 15%;
@@ -233,6 +247,21 @@ h1 {
   font-weight: 300;
   color: #3c4043;
   margin-bottom: 10px;
+}
+
+.app-name-dr {
+  font-size: 2vh;
+  font-weight: 500;
+  color: #3c4043;
+  margin-bottom: 10px;
+}
+
+.app-speciality-dr {
+  font-size: 1.5vh;
+  font-style: italic;
+  font-weight: 300;
+  color: #3c4043;
+  
 }
 
 .app-date {
@@ -336,7 +365,7 @@ h1 {
   align-items: center;
   appearance: none;
   background-color: #fff;
-  border-radius: 24px;
+  border-radius: 10px;/*24*/
   border-style: solid;
   border: 2px solid rgb(99, 99, 99);
   /*box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;*/
@@ -391,6 +420,13 @@ h1 {
   padding: 5vh 0;
 }
 
+.new-dr-app-container {
+  background-color: #ececec85;
+  margin: 0;
+  padding: 3% 25%;
+  border-radius: 0;
+}
+
 
 .speciality-buttons {
 
@@ -414,7 +450,7 @@ h1 {
 .new-app {
   padding: 0;
   gap: 30px;
-  /*justify-content: space-between;*/
+  /*justify-content: space-between; quitar new-app?*/ 
 }
 
 .new-app>div {
@@ -427,4 +463,65 @@ h1 {
   font-size: 1.5vh;
   margin: 5% 0%;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.appointments-container .free-dr-appointment{
+  /*background-color: #a1a1a1 !important;*/
+  border: #71787c solid;
+
+}
+
+.help-container{
+  text-align: center;
+  padding: 10vh 0;
+}
+
+.add-app-text {
+  font-size: 1.9vh;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-weight: 400;
+  color: rgb(50, 52, 53);
+  padding-right: 200px;
+  margin-bottom: 30px;
+}
+
+.add-app-text span{
+  font-size: 1.8vh;
+}
+
+.button-style-free-app{
+  border-radius: 10px;
+  padding: 0;
+}
+
+
+.add-form{
+ 
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-size: 18px;
+  display:flex;
+  gap: 15px;
+  text-align: center;
+}
+
+label{
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-size: 1.7vh;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+input, select{
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-size: 1.7vh;
+}
+
+.end-text {
+  text-align: center;
+  font-size: 2vh;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-weight: 400;
+  color: rgb(50, 52, 53);
+  margin-bottom: 30px;
 }

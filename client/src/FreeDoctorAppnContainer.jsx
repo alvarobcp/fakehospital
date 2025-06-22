@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import FreeAppointment from './FreeAppointment';
 import DoctorAppointment from './DoctorAppointment';
 
-function FreeDoctorAppnContainer({appointments, setAppointments}) {
+function FreeDoctorAppnContainer({appointments, setAppointments, doctor_id}) {
 
   const removeFreeAppointment = async (id) => {
       console.log("Deleted appointment with id: " + id)
       try{
             const res = await fetch(`https://fakehospital.onrender.com/api/doctor/deleteappointment/${id}`, {
-                method: 'DELETE', //must be delete??
+                method: 'DELETE',
                 headers: {'Content-Type': 'application/json',},
                 body: JSON.stringify({
                     appointment_id: id  //REV
@@ -19,7 +19,7 @@ function FreeDoctorAppnContainer({appointments, setAppointments}) {
 
             if (res.ok) {
                 console.log('Done!');
-                const resDoctor = await fetch(`https://fakehospital.onrender.com/api/doctor/appointments/${3}`); //remember id must be from global, now 3 just to develop
+                const resDoctor = await fetch(`https://fakehospital.onrender.com/api/doctor/appointments/${doctor_id}`); 
                 const dataDoctor = await resDoctor.json();
                 setAppointments(dataDoctor);
 
@@ -34,14 +34,14 @@ function FreeDoctorAppnContainer({appointments, setAppointments}) {
 
   return (
     
-      <div className='appointments-container'>
-        <div className="title"><span className="material-symbols-outlined">emergency</span><h3>My free Appointments:</h3></div>
-        <div className='app-container'>
+      <div className='appointments-container new-app-container'>
+        <div className="title app-title"><span class="material-symbols-outlined" style={{ color: '#60afff' }}>event_available</span><h3>MY FREE <b style={{ color: '#60afff' }}>APPOINTMENTS:</b></h3></div>
+        <div className='dr-app-container'>
           
            {appointments.map((appn, index) => (
             <FreeAppointment key={index}  date={appn.date}
             time ={appn.time} 
-            button={<button onClick={()=> removeFreeAppointment(appn.appointment_id)}>Delete</button>}></FreeAppointment>
+            button={<button className='button-style button-style-free-app' onClick={()=> removeFreeAppointment(appn.appointment_id)}><span class="app-button-icon material-symbols-outlined">close</span></button>}></FreeAppointment>
            ))}
            
         </div>

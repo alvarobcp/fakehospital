@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Appointment from './Appointment';
 import DoctorAppointment from './DoctorAppointment';
 
-function DoctorAppnContainer({appointments, setAppointments}) {
+function DoctorAppnContainer({appointments, setAppointments, doctor_id}) {
 
   const removeAppointment = async (id) => {
       console.log("Deleted appointment with id: " + id)
@@ -19,7 +19,7 @@ function DoctorAppnContainer({appointments, setAppointments}) {
 
             if (res.ok) {
                 console.log('Done!');
-                const resDoctor = await fetch(`https://fakehospital.onrender.com/api/doctor/appointments/${3}`); //remember id must be from global, now 3 just to develop
+                const resDoctor = await fetch(`https://fakehospital.onrender.com/api/doctor/appointments/${doctor_id}`);
                 const dataDoctor = await resDoctor.json();
                 setAppointments(dataDoctor);
 
@@ -34,15 +34,15 @@ function DoctorAppnContainer({appointments, setAppointments}) {
 
   return (
     
-      <div className='appointments-container'>
-        <div className="title"><span className="material-symbols-outlined">emergency</span><h3>My Appointments:</h3></div>
+      <div className='appointments-container new-dr-app-container'>
+        <div className="title app-title"><span class="material-symbols-outlined" style={{ color: '#60afff' }}>calendar_month</span><h3>UPCOMING <b style={{ color: '#60afff' }}>APPOINTMENTS:</b></h3></div>
         <div className='app-container'>
           
            {appointments.map((appn, index) => (
             <DoctorAppointment key={index} name={appn.name}
             surname={appn.surname} date={appn.date}
             time ={appn.time} 
-            button={<button onClick={()=> removeAppointment(appn.appointment_id)}>Cancel</button>}></DoctorAppointment>
+            button={<button className='button-style' onClick={()=> removeAppointment(appn.appointment_id)}><span class="app-button-icon material-symbols-outlined">close</span>Cancel</button>}></DoctorAppointment>
            ))}
            
         </div>

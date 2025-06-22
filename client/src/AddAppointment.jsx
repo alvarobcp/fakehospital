@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Appointment from './Appointment';
 import DoctorAppointment from './DoctorAppointment';
 
-function AddAppointment({appointments, setAppointments}) {
+function AddAppointment({appointments, setAppointments, doctor_id}) {
 
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
@@ -24,7 +24,7 @@ function AddAppointment({appointments, setAppointments}) {
 
             if (res.ok) {
                 console.log('Done!');
-                const resDoctor = await fetch(`https://fakehospital.onrender.com/api/doctor/appointments/${3}`); //remember id must be from global, now 3 just to develop
+                const resDoctor = await fetch(`https://fakehospital.onrender.com/api/doctor/appointments/${doctor_id}`);
                 const dataDoctor = await resDoctor.json();
                 setAppointments(dataDoctor);
 
@@ -62,12 +62,12 @@ function AddAppointment({appointments, setAppointments}) {
 
   return (
     
-      <div className='appointments-container'>
-        <div className="title"><span className="material-symbols-outlined">emergency</span><h3>Add a free appointment:</h3></div>
+      <div className='appointments-container new-app-container' style={{padding: 0}}>
+        <div className="title add-app-text"><span className="material-symbols-outlined">calendar_add_on</span><p>Add a free appointment:</p></div>
         <div className='add-container'>
            <form onSubmit={submitAppointment} className="add-form">
                 <label>
-                    Fecha:
+                    Date:
                     <input
                     type="date"
                     value={date}
@@ -76,16 +76,21 @@ function AddAppointment({appointments, setAppointments}) {
                 </label>
 
                 <label>
-                    Hora:
-                    <input
-                    type="time"
-                    value={time}
-                    step="3600"
-                    onChange={(e) => setTime(e.target.value)}
-                    />
+                    Time:
+                    <select value={time} onChange={(e) => setTime(e.target.value)}>
+                        <option value="">Select time</option>
+                        <option value="09:00">9:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="12:00">12:00</option>
+                        <option value="13:00">13:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                    </select>
                 </label>
 
-                <button type="submit">Agregar Cita</button>
+                <button className='button-style' style={{padding: '2px 14px 2px 7px'}} type="submit"><span className="material-symbols-outlined">add</span>Add</button>
             </form>
            
         </div>

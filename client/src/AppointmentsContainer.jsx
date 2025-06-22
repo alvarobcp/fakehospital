@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Appointment from './Appointment';
 
-function AppointmentsContainer({appointments, setAppointments}) {
+function AppointmentsContainer({appointments, setAppointments, hospital_id}) {
 
   const removeAppointment = async (id) => {
       console.log("Deleted appointment with id: " + id)
@@ -10,7 +10,7 @@ function AppointmentsContainer({appointments, setAppointments}) {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json',},
                 body: JSON.stringify({
-                    appointment_id: id  //REV
+                    appointment_id: id  //no hace falta 
                 }),
             });
            
@@ -18,7 +18,7 @@ function AppointmentsContainer({appointments, setAppointments}) {
 
             if (res.ok) {
                 console.log('Done!');
-                const resPatient = await fetch(`https://fakehospital.onrender.com/api/hospital/appointments/${1}`);
+                const resPatient = await fetch(`https://fakehospital.onrender.com/api/hospital/appointments/${hospital_id}`);
                 const dataPatient = await resPatient.json();
                 setAppointments(dataPatient);
 
