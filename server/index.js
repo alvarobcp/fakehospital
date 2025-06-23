@@ -84,10 +84,10 @@ app.get('/api/doctor/freeappointments/:id', async (req, res) => { //get FREE arr
   }
 });
 
-app.post('/api/hospital/addappointment/:id/:patient-id', async (req, res) => {
+app.post('/api/hospital/addappointment/:id/:patientId', async (req, res) => {
 
   const appointment_id = req.params.id;
-  const patient_id = req.params.patient-id;
+  const patient_id = req.params.patientId;
 
   try {
     const result = await pool.query(
