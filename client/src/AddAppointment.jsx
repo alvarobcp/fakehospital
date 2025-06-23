@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Appointment from './Appointment';
 import DoctorAppointment from './DoctorAppointment';
 
-function AddAppointment({appointments, setAppointments, doctor_id}) {
+function AddAppointment({setAppointments, setFreeAppointments, doctor_id}) {
 
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
@@ -14,7 +14,7 @@ function AddAppointment({appointments, setAppointments, doctor_id}) {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json',},
                 body: JSON.stringify({
-                    doctor_id: 3, //REV
+                    doctor_id: doctor_id,
                     date: date,
                     time: time  
                 }),
@@ -27,6 +27,9 @@ function AddAppointment({appointments, setAppointments, doctor_id}) {
                 const resDoctor = await fetch(`https://fakehospital.onrender.com/api/doctor/appointments/${doctor_id}`);
                 const dataDoctor = await resDoctor.json();
                 setAppointments(dataDoctor);
+                const resFreeDoctor = await fetch(`https://fakehospital.onrender.com/api/doctor/freeappointments/${doctor_id}`);
+                const dataFreeDoctor = await resFreeDoctor.json();
+                setFreeAppointments(dataFreeDoctor);
 
 
             } else {
@@ -62,7 +65,7 @@ function AddAppointment({appointments, setAppointments, doctor_id}) {
 
   return (
     
-      <div className='appointments-container new-app-container' style={{padding: 0}}>
+      <div className='appointments-container new-app-container free-app'>
         <div className="title add-app-text"><span className="material-symbols-outlined">calendar_add_on</span><p>Add a free appointment:</p></div>
         <div className='add-container'>
            <form onSubmit={submitAppointment} className="add-form">

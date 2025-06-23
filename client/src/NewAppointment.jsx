@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Appointment from './Appointment';
 import AppointmentsContainer from './AppointmentsContainer';
 
-function NewAppointment({setAppointments, patient_id}) {
+function NewAppointment({setAppointments, patient_id, isStart, setStart}) {
 
     const [newAppointments, SetNewAppointments] = useState([]);
 
@@ -34,6 +34,7 @@ function NewAppointment({setAppointments, patient_id}) {
 
 
     const getAppointments = async (speciality) => {
+        if(isStart) {setStart(false);}
         try{
             const res = await fetch(`https://fakehospital.onrender.com/api/hospital/appointment?speciality=${speciality}`);
             const data = await res.json();
@@ -43,10 +44,12 @@ function NewAppointment({setAppointments, patient_id}) {
             } else{
                 console.log(data.error || "Error");
             }
+            
         }
         catch (err){
             console.log("Error")
         }
+        
     }
 
   return (
@@ -62,11 +65,12 @@ function NewAppointment({setAppointments, patient_id}) {
 
 
         </div>
+        {isStart ? <div></div> :
         <div className='app-container new-app'>
               {newAppointments.length > 0 ? 
               newAppointments.map((appn, index) => (<Appointment className='component-new-app' key={index} id={appn.appointment_id} doctor_name={appn.doctor_name} doctor_surname={appn.doctor_surname} speciality={appn.speciality} date={appn.date} time ={appn.time} 
               button={<button className='button-style' onClick={()=> addAppointment(appn.appointment_id, appn.speciality)}>Accept</button>}></Appointment>)) : <p className='welcome-text'>We don't have free appointments at the moment — please contact with us.</p>}
-        </div>
+        </div>}
       </div>
 
   );

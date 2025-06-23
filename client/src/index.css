@@ -68,6 +68,7 @@ h1 {
   font-weight: 300;
   color: rgb(49, 49, 49);
   font-size: 2vh;
+  
 
 }
 
@@ -306,6 +307,7 @@ h1 {
   align-content: center;
   gap: 20px;
   text-align: center;
+  flex-wrap: wrap;
 }
 
 
@@ -550,4 +552,125 @@ input, select{
   color: rgb(50, 52, 53);
   margin-top: 30px;
   margin-bottom: 15px;
+}
+
+.waiting-data{
+  width: 100vw;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.waiting-data p{
+  font-size: 1.5vh;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  color: rgb(50, 52, 53);
+}
+
+.free-app{
+  padding: 0;
+}
+
+@media (max-width: 950px) {
+
+    .user-data-container{
+    padding: 4vh 15%;
+    }
+
+    nav{
+    height: 20vh;
+    }
+
+    .nav-container{
+    flex-direction:column;
+    }
+
+    .buttons-nav-container{
+      flex-direction: column;
+    }
+
+    .nav-user-container{
+      margin-top: 15px;
+    }
+
+    .add-form{
+      flex-flow: wrap;
+    }
+
+    .end-text{
+      margin-left: 10%;
+      margin-right: 10%;
+       font-size: 2vh;
+    }
+
+    .app-container, .dr-app-container{
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      flex-wrap: nowrap;
+    }
+
+    .dr-app-container > * {
+      flex: 0 0 auto; 
+      scroll-snap-align: start; 
+    }
+
+    .app-container > *{
+      flex: 0 0 auto; 
+      scroll-snap-align: start; 
+    }
+
+    .appointments-container, .new-dr-app-container, .new-app-container{
+      margin: 0;
+      padding: 20px;
+      border-radius: 0;
+    }
+
+    .welcome-text{
+      padding: 0;
+    }
+
+    .app-title{
+      font-size: 2vh;
+      margin: 5px;
+    }
+
+    .footer-text{
+      margin: 5%;
+    }
+
+    .free-app{
+      padding: 25px;
+    }
+
+    .button-style-free-app{
+      padding: 5px;
+    }
+
+    .speciality-buttons{
+      flex-wrap: wrap;
+      padding: 5%;
+    }
+
+    .new-app > p{
+      flex: auto;
+    }
+    
+
+}
+
+
+@media (max-width: 400px) {
+
+  .data-text{
+    font-size: 1.3vh;
+  }
+
+  .user-contact-container h2{
+    font-size: 2.5;
+  }
+
 }

@@ -8,10 +8,6 @@ function AppointmentsContainer({appointments, setAppointments, hospital_id}) {
       try{
             const res = await fetch(`https://fakehospital.onrender.com/api/hospital/removeappointment/${id}`, {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json',},
-                body: JSON.stringify({
-                    appointment_id: id  //no hace falta 
-                }),
             });
            
             const result = await res.json();
@@ -36,8 +32,8 @@ function AppointmentsContainer({appointments, setAppointments, hospital_id}) {
       <div className='appointments-container'>
         <div className="title app-title"><span class="material-symbols-outlined" style={{ color: '#60afff' }}>calendar_month</span><h3>UPCOMING <b style={{ color: '#60afff' }}>APPOINTMENTS:</b></h3></div>
         <div className='app-container'>
-          
-           {appointments.map((appn, index) => (
+
+           {appointments.length === 0 ? <p className='welcome-text' >You don't have any appointments.</p> :  appointments.map((appn, index) => (
             <Appointment key={index} doctor_name={appn.doctor_name}
             doctor_surname={appn.doctor_surname} speciality={appn.speciality} date={appn.date}
             time ={appn.time} 
