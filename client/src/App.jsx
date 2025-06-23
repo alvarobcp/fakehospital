@@ -7,6 +7,7 @@ import DoctorAppnContainer from './DoctorAppnContainer';
 import FreeDoctorAppnContainer from './FreeDoctorAppnContainer';
 import AddAppointment from './AddAppointment';
 import { useAuth0 } from "@auth0/auth0-react";
+import Login from './LogIn';
 
 function App() {
 
@@ -61,10 +62,7 @@ function App() {
 
   if (!isAuthenticated) {
     return (
-      <div>
-        <h1>Bienvenido</h1>
-        <button onClick={() => loginWithRedirect()}>Iniciar sesión</button>
-      </div>
+      <Login button={<button className='button-style' onClick={() => loginWithRedirect()}>Log In</button>}></Login>
     );
   }
 
@@ -85,12 +83,12 @@ function App() {
         {userData ? <Header name={userData.name} surname={userData.surname} logout={() => logout({ returnTo: window.location.origin })}></Header> : <div></div>}
         {userData ? <Welcome name={userData.name} surname={userData.surname} phone={userData.phone} mail={userData.mail} credential={''} role={'hospital'}></Welcome> : <div>Waiting...</div>}
         {appointments ? <AppointmentsContainer appointments={appointments} setAppointments={setAppointments} hospital_id={id}></AppointmentsContainer> : <div></div>}
-        {userData ? <NewAppointment setAppointments={setAppointments}></NewAppointment> : <div></div>}
+        {userData ? <NewAppointment setAppointments={setAppointments} patient_id={id}></NewAppointment> : <div></div>}
    </>
   
   )}
-  <div className='container help-container'><p className='end-text'>In case you need some help, please contact us at +87 866 973 000 or send an email to info@fakehospital.com — We will contact you as soon as posible.</p></div>
-  <footer className='container' style={{ textAlign: 'center' }}><p className='footer-text'>Developed by Álvaro Delgado to practise React, CSS, Databases and Node.js with Express.</p></footer>
+  <div className='container help-container'><p className='end-text'>In case you need some help, please contact us at +34 655 788 000 or send an email to info@fakehospital.com — We will contact you as soon as posible.</p></div>
+  <footer className='container' style={{ textAlign: 'center' }}><p className='footer-text'>Developed by Álvaro Delgado to practise React, CSS, Firebase, Auth0, Databases and Node.js with Express.</p></footer>
   <button onClick={() => logout({ returnTo: window.location.origin})}>Cerrar la sesión (dev)</button>
  </>
  

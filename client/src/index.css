@@ -459,8 +459,8 @@ h1 {
 }
 
 .footer-text {
-  color: #555555;
-  font-size: 1.5vh;
+  color: #757575;
+  font-size: 1.4vh;
   margin: 5% 0%;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -524,4 +524,30 @@ input, select{
   font-weight: 400;
   color: rgb(50, 52, 53);
   margin-bottom: 30px;
+}
+
+.login-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login-container h2 {
+  font-size: 3.5vh;
+  font-weight: 500;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  padding-bottom: 4vh;
+}
+
+.intro-text {
+  text-align: center;
+  font-size: 1.7vh;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-weight: 300;
+  color: rgb(50, 52, 53);
+  margin-top: 30px;
+  margin-bottom: 15px;
 }

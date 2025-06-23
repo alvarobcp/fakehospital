@@ -9,12 +9,8 @@ function NewAppointment({setAppointments, patient_id}) {
      const addAppointment = async (id, speciality) => {
       console.log("Added appointment with id: " + id)
       try{
-            const res = await fetch(`https://fakehospital.onrender.com/api/hospital/addappointment/${id}`, {
+            const res = await fetch(`https://fakehospital.onrender.com/api/hospital/addappointment/${id}/${patient_id}`, {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json',},
-                body: JSON.stringify({
-                    appointment_id: id //rev
-                }),
             });
            
             const result = await res.json();
@@ -22,8 +18,7 @@ function NewAppointment({setAppointments, patient_id}) {
             if (res.ok) {
                 console.log('Done!');
                 await getAppointments(speciality);
-
-                const resPatient = await fetch(`https://fakehospital.onrender.com/api/hospital/appointments/${id}`); //Revisar
+                const resPatient = await fetch(`https://fakehospital.onrender.com/api/hospital/appointments/${patient_id}`); 
                 const dataPatient = await resPatient.json();
                 setAppointments(dataPatient);
 
