@@ -8,7 +8,7 @@ function AddAppointment({setAppointments, setFreeAppointments, doctor_id}) {
     const [time, setTime] = useState("");
 
   const addAppointment = async (date, time) => {
-      console.log(`Added appointment on ${date} and ${time}`);
+      
       try{
             const res = await fetch(`https://fakehospital.onrender.com/api/doctor/newappointment/`, {
                 method: 'POST',
@@ -23,7 +23,6 @@ function AddAppointment({setAppointments, setFreeAppointments, doctor_id}) {
             const result = await res.json();
 
             if (res.ok) {
-                console.log('Done!');
                 const resDoctor = await fetch(`https://fakehospital.onrender.com/api/doctor/appointments/${doctor_id}`);
                 const dataDoctor = await resDoctor.json();
                 setAppointments(dataDoctor);

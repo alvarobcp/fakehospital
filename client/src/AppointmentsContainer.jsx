@@ -5,7 +5,7 @@ function AppointmentsContainer({appointments, setAppointments, hospital_id}) {
 
 
   const removeAppointment = async (id) => {
-      console.log("Deleted appointment with id: " + id)
+      
       try{
             const res = await fetch(`https://fakehospital.onrender.com/api/hospital/removeappointment/${id}`, {
                 method: 'POST',
@@ -14,7 +14,6 @@ function AppointmentsContainer({appointments, setAppointments, hospital_id}) {
             const result = await res.json();
 
             if (res.ok) {
-                console.log('Done!');
                 const resPatient = await fetch(`https://fakehospital.onrender.com/api/hospital/appointments/${hospital_id}`);
                 const dataPatient = await resPatient.json();
                 setAppointments(dataPatient);
