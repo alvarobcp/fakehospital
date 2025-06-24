@@ -41,7 +41,18 @@ function DoctorAppnContainer({appointments, setAppointments, setFreeAppointments
         <div className="title app-title"><span class="material-symbols-outlined" style={{ color: '#60afff' }}>calendar_month</span><h3>UPCOMING <b style={{ color: '#60afff' }}>APPOINTMENTS:</b></h3></div>
         <div className='app-container'>
           
-           {appointments.length === 0 ? <p className='welcome-text' >You don't have any appointments.</p> : appointments.map((appn, index) => (
+           {appointments.length === 0 ? <p className='welcome-text' >You don't have any appointments.</p> : 
+           
+           appointments.filter(appn => {
+              const today = new Date();
+              const appnDate = new Date(appn.date);
+            
+              today.setHours(0,0,0,0);
+              appnDate.setHours(0,0,0,0);
+
+              return appnDate >= today
+           }
+           ).map((appn, index) => (
             <DoctorAppointment key={index} name={appn.name}
             surname={appn.surname} date={appn.date}
             time ={appn.time} 

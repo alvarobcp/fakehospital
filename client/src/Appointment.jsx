@@ -13,6 +13,7 @@ const formatTime = (time) => {
   return time.slice(0, -3);
 }
 
+
   return (
     <div className="appointment-component">
         <p className='app-name'>Dr. {doctor_name} {doctor_surname}</p>

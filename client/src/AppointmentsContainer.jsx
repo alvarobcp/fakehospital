@@ -3,6 +3,7 @@ import Appointment from './Appointment';
 
 function AppointmentsContainer({appointments, setAppointments, hospital_id}) {
 
+
   const removeAppointment = async (id) => {
       console.log("Deleted appointment with id: " + id)
       try{
@@ -33,10 +34,20 @@ function AppointmentsContainer({appointments, setAppointments, hospital_id}) {
         <div className="title app-title"><span class="material-symbols-outlined" style={{ color: '#60afff' }}>calendar_month</span><h3>UPCOMING <b style={{ color: '#60afff' }}>APPOINTMENTS:</b></h3></div>
         <div className='app-container'>
 
-           {appointments.length === 0 ? <p className='welcome-text' >You don't have any appointments.</p> :  appointments.map((appn, index) => (
+           {appointments.length === 0 ? <p className='welcome-text'>You don't have any appointments.</p> :  
+           appointments.filter(appn => {
+              const today = new Date();
+              const appnDate = new Date(appn.date);
+            
+              today.setHours(0,0,0,0);
+              appnDate.setHours(0,0,0,0);
+
+              return appnDate >= today  //we compare butt don't delete to have a record of the past appointments
+           }
+           ).map((appn, index) => (
             <Appointment key={index} doctor_name={appn.doctor_name}
             doctor_surname={appn.doctor_surname} speciality={appn.speciality} date={appn.date}
-            time ={appn.time} 
+            time ={appn.time}
             button={<button className='button-style' onClick={()=> removeAppointment(appn.appointment_id)}><span class="app-button-icon material-symbols-outlined">close</span>Cancel</button>}></Appointment>
            ))}
            
@@ -45,5 +56,6 @@ function AppointmentsContainer({appointments, setAppointments, hospital_id}) {
 
   );
 }
+
 
 export default AppointmentsContainer;

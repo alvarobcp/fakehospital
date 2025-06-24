@@ -23,6 +23,8 @@ function App() {
   
   const { loginWithRedirect, logout, isAuthenticated, user, isLoading } = useAuth0();
 
+  const defaultProfilePic = 'https://api.dicebear.com/9.x/fun-emoji/svg?seed=Alexander&randomizeIds=true&eyes=cute,closed&mouth=faceMask';
+
   useEffect(() => { //get token with role and id from useAth0
     if (isAuthenticated && user) {
       const role = user["https://fakehospital.com/role"];
@@ -73,7 +75,7 @@ function App() {
     {role === 'doctor' ? (
 
     <>
-        {userData ? <Header name={userData.doctor_name} surname={userData.doctor_surname} logout={() => logout({ returnTo: window.location.origin })}></Header> : <Header name={''} surname={''} logout={() => logout({ returnTo: window.location.origin })}></Header>}
+        {userData ? <Header name={userData.doctor_name} surname={userData.doctor_surname} logout={() => logout({ returnTo: window.location.origin })} profile_pic={userData.profile_pic}></Header> : <Header name={''} surname={''} logout={() => logout({ returnTo: window.location.origin })} profile_pic={defaultProfilePic}></Header>}
         {userData ? <Welcome name={userData.doctor_name} surname={userData.doctor_surname} phone={userData.phone} mail={userData.mail} credential={userData.doctor_credential} role={'doctor'}></Welcome> : <WaitingData></WaitingData>}
         {appointments ? <DoctorAppnContainer appointments={appointments} setAppointments={setAppointments} setFreeAppointments={setFreeAppointments} doctor_id={id}></DoctorAppnContainer> : <div></div>}
         {appointments ? <FreeDoctorAppnContainer appointments={freeAppointments} setAppointments={setAppointments} setFreeAppointments={setFreeAppointments} doctor_id={id}></FreeDoctorAppnContainer> : <div></div>}
@@ -82,7 +84,7 @@ function App() {
 
      ) : (
    <>
-        {userData ? <Header name={userData.name} surname={userData.surname} logout={() => logout({ returnTo: window.location.origin })}></Header> : <Header name={''} surname={''} logout={() => logout({ returnTo: window.location.origin })}></Header>}
+        {userData ? <Header name={userData.name} surname={userData.surname} logout={() => logout({ returnTo: window.location.origin })} profile_pic={userData.profile_pic}></Header> : <Header name={''} surname={''} logout={() => logout({ returnTo: window.location.origin })} profile_pic={defaultProfilePic}></Header>}
         {userData ? <Welcome name={userData.name} surname={userData.surname} phone={userData.phone} mail={userData.mail} credential={''} role={'hospital'}></Welcome> : <WaitingData></WaitingData>}
         {appointments ? <AppointmentsContainer appointments={appointments} setAppointments={setAppointments} hospital_id={id}></AppointmentsContainer> : <div></div>}
         {userData ? <NewAppointment setAppointments={setAppointments} patient_id={id} isStart={start} setStart={setStart} ></NewAppointment> : <div></div>}

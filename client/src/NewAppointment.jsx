@@ -67,9 +67,21 @@ function NewAppointment({setAppointments, patient_id, isStart, setStart}) {
         </div>
         {isStart ? <div></div> :
         <div className='app-container new-app'>
-              {newAppointments.length > 0 ? 
-              newAppointments.map((appn, index) => (<Appointment className='component-new-app' key={index} id={appn.appointment_id} doctor_name={appn.doctor_name} doctor_surname={appn.doctor_surname} speciality={appn.speciality} date={appn.date} time ={appn.time} 
-              button={<button className='button-style' onClick={()=> addAppointment(appn.appointment_id, appn.speciality)}>Accept</button>}></Appointment>)) : <p className='welcome-text'>We don't have free appointments at the moment — please contact with us.</p>}
+        {newAppointments.length > 0 ? 
+   
+        newAppointments.filter(appn => {
+              const today = new Date();
+              const appnDate = new Date(appn.date);
+            
+              today.setHours(0,0,0,0);
+              appnDate.setHours(0,0,0,0);
+
+              return appnDate >= today
+           }
+           ).map((appn, index) => 
+
+            (<Appointment className='component-new-app' key={index} id={appn.appointment_id} doctor_name={appn.doctor_name} doctor_surname={appn.doctor_surname} speciality={appn.speciality} date={appn.date} time ={appn.time} 
+            button={<button className='button-style' onClick={()=> addAppointment(appn.appointment_id, appn.speciality)}>Accept</button>}></Appointment>)) : <p className='welcome-text'>We don't have free appointments at the moment — please contact with us.</p>}
         </div>}
       </div>
 
